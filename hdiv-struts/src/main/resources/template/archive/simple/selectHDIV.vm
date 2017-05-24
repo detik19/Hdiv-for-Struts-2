@@ -1,0 +1,46 @@
+<select name="$!struts.htmlEncode($parameters.name)"
+    #set( $hdivValue = $dataComposer.compose("$!struts.htmlEncode($parameters.name)", "", false) )
+						    #if ($parameters.size)             size="$!struts.htmlEncode($parameters.size)"         #end
+    #if ($parameters.disabled)         disabled="disabled"                                  #end
+    #if ($parameters.tabindex)         tabindex="$!struts.htmlEncode($parameters.tabindex)" #end
+    #if ($parameters.id)               id="$!struts.htmlEncode($parameters.id)"             #end
+    #if ($parameters.multiple)         multiple="multiple"                                  #end
+    #if ($parameters.cssClass)         class="$!struts.htmlEncode($parameters.cssClass)"    #end
+    #if ($parameters.cssStyle)         style="$!struts.htmlEncode($parameters.cssStyle)"    #end
+    #parse("/$parameters.templateDir/simple/scripting-events.vm")
+>
+
+#if ($parameters.headerKey && $parameters.headerValue)
+    #set( $hdivValue = $dataComposer.compose("$!struts.htmlEncode($parameters.name)", "$!struts.htmlEncode($parameters.headerKey)", false) )
+    <option value="$hdivValue">$!struts.htmlEncode($parameters.headerValue)</option>
+#end
+
+#if ($parameters.emptyOption)
+    #set( $hdivValue = $dataComposer.compose("$!struts.htmlEncode($parameters.name)", "", false) )
+    <option value="$hdivValue"></option>
+#end
+
+#set( $items = $parameters.list )
+#if( $items )
+    #foreach( $item in $items )
+        $stack.push($item)
+
+        #if( $parameters.listKey )
+            #set( $itemKey = $stack.findValue($parameters.listKey) )
+        #else
+            #set( $itemKey = $item )
+        #end
+
+        #if( $parameters.listValue )
+            #set( $itemValue = $stack.findValue($parameters.listValue) )
+        #else
+            #set( $itemValue = $item )
+        #end
+        #set( $hdivValue = $dataComposer.compose("$!struts.htmlEncode($parameters.name)", "$!struts.htmlEncode($itemKey)", false) )
+        <option value="$hdivValue"#if( $tag.contains($parameters.nameValue, $itemKey) ) selected="selected"#end>$!struts.htmlEncode($itemValue)</option>
+
+        #set ($trash = $stack.pop())
+    #end
+#end
+
+</select>

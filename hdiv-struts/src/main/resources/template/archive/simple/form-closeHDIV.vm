@@ -1,0 +1,5 @@
+#if ($parameters.action)    
+	  #set( $requestId = $dataComposer.endRequest() )
+	  <input type="hidden" name="$dataComposer.HDIVParameter" value="$requestId" />
+	#end
+</form>
