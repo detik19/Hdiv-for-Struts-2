@@ -133,7 +133,7 @@
 		<!--<module>hdiv-web-struts-2.0.6</module>-->
 <!--  		<module>hdiv-struts-2.0.9</module> -->
 		<!--<module>hdiv-web-struts-2.0.9</module>-->
-<!--  		<module>hdiv-struts-2.0.11</module> -->
+  		<module>hdiv-struts-2.0.11</module>
 		<!--<module>hdiv-web-struts-2.0.11</module>	-->	
 <!-- 		<module>hdiv-jstl-taglibs-1.1.0</module> -->
 		<!--<module>hdiv-web-jstl-taglibs-1.1.0</module>-->
